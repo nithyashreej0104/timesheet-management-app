@@ -1,0 +1,77 @@
+:host {
+  // --header-bg: #23D5D1;
+  --background: #E9F7F7;
+  --item-bg: #ffffff;
+  --item-border: #B0E0E6;
+  --button-bg: #1FC7C3;
+  --button-text: #ffffff;
+  --text-color: #056162;
+  --radius: 18px;
+  --focus-ring: #1FC7C366;
+   --header-bg: linear-gradient(135deg, #1d6e6f, #23D5D1);
+  /* glowing aqua */
+}
+
+.custom-header {
+  --background: linear-gradient(135deg, #23D5D1 , #1d6e6f);
+  min-height: 56px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+.logo {
+  width: 120px;
+  margin: 10px 0 10px 15px;
+}
+
+.custom-content{
+--background: #E9F7F7;
+  padding: 10px;
+}
+
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  
+}
+
+.welcome-gif {
+  width: 70%;
+  max-width: 260px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 17px;
+  color: var(--text-color);
+  margin-bottom: 35px;
+  font-weight: 500;
+}
+
+.btn {
+  width: 60%;
+  height: 48px;
+  margin-top: 20px;
+  --background: var(--button-bg);
+  --color: var(--button-text);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  transition: transform 0.30s ease, box-shadow 0.2s ease;
+}
+
+.btn:active::part(native),
+.btn.ion-activated::part(native) {
+  transform: scale(0.96);
+  box-shadow: 0 0 15px var(--focus-ring);
+}

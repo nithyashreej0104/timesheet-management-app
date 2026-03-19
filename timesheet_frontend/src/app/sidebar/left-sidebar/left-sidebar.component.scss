@@ -1,0 +1,122 @@
+/* =========================
+   BASE VARIABLES
+========================= */
+:host {
+  --header-bg: linear-gradient(135deg, #1d6e6f, #23D5D1);
+  /* Active item gradient (different from header) */
+  --active-gradient: linear-gradient(135deg, #1fc7c3, #6fdedb);
+
+  --menu-bg: #E9F7F7;
+  --item-text: #2b2b2b;
+  --item-icon: #6b6b6b;
+
+  --radius: 12px;
+}
+
+/* =========================
+   FORCE LIGHT MENU (EVEN IN DARK MODE)
+========================= */
+:host,
+.menu-content {
+  --ion-background-color: #E9F7F7;
+  --ion-item-background: transparent;
+  --ion-text-color: #2b2b2b;
+}
+
+/* =========================
+   HEADER
+========================= */
+.menu-header {
+  --background: var(--header-bg);
+}
+
+.menu-header ion-title {
+  color: #ffffff;
+  font-weight: 500;
+  text-align: start;
+  letter-spacing:2px
+}
+
+/* =========================
+   CONTENT
+========================= */
+.menu-content {
+  --background: var(--menu-bg);
+  padding: 14px 15px;
+}
+
+/* =========================
+   LIST
+========================= */
+ion-list {
+  padding: 15px 20px;
+  background: #E9F7F7;
+}
+
+/* =========================
+   MENU ITEM
+========================= */
+ion-item {
+  --background: transparent !important;
+    --padding-start: 15px;
+    --inner-padding-end: 15px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    font-weight: 700 !important;
+  font-size: 1.1rem;
+    color: #122c30 !important;
+  border-radius: 18px !important;
+    position: relative;
+    width: 90%;
+
+}
+
+/* Icon */
+ion-item ion-icon {
+  font-size: 1.3rem;
+  margin-right: 12px;
+  // color: var(--item-icon);
+  color: #122c30 !important;
+
+}
+
+/* Remove ripple / bleed */
+ion-item::part(native) {
+  background: transparent;
+}
+
+/* =========================
+   ACTIVE MENU ITEM
+========================= */
+.active-menu-item {
+  // --background: var(--active-gradient);
+  // background: #0e1d1f !important;
+  background:  linear-gradient(135deg, #0e1d1f, #29b1ad);;
+  border: 1px solid #1fc7c3 !important;
+   box-shadow: 0 6px 10px #7d9ca0;
+   color: whitesmoke !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem;
+  overflow: hidden;
+}
+
+/* Active icon */
+.active-menu-item ion-icon {
+   color: #d6f4f2 !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem;
+}
+
+/* =========================
+   LEFT BORDER INDICATOR
+========================= */
+.active-menu-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 8px;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #0a6c6d, #23d5d1);
+}

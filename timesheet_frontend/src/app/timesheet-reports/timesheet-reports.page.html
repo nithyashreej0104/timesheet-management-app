@@ -1,0 +1,181 @@
+<ion-content class="custom-content">
+  <ion-card class="report-card">
+    <ion-grid>
+      <ion-row class="status-buttons">
+        <ion-col size="3">
+          <button class="status-btn pending" [class.active]="selectedStatus === 'Pending'"
+            (click)="filterByStatus('Pending')">
+            Pending
+          </button>
+        </ion-col>
+        <ion-col size="2">
+          <button class="status-btn all" [class.active]="selectedStatus === 'All'" (click)="filterByStatus('All')">
+            All
+          </button>
+        </ion-col>
+
+        <ion-col size="4">
+          <button class="status-btn approval" [class.active]="selectedStatus === 'Approved'"
+            (click)="filterByStatus('Approved')">
+            Approved
+          </button>
+        </ion-col>
+
+        <ion-col size="3">
+          <button class="status-btn rejected" [class.active]="selectedStatus === 'Rejected'"
+            (click)="filterByStatus('Rejected')">
+            Rejected
+
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-row class="date-row">
+
+      <!-- START DATE -->
+      <ion-col size="6" class="date-col">
+        <div class="date-label">Start Date</div>
+
+        <ion-item color = "sucess" class="date-item" lines="none" button (click)="openCalendar('start')">
+
+          <ion-label class="date-value">
+            {{ startDate ? (startDate | date:'dd/MM/yyyy') : 'DD/MM/YYYY' }}
+          </ion-label>
+
+          <ion-icon name="calendar-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+
+      <!-- END DATE -->
+      <ion-col size="6" class="date-col">
+        <div class="date-label">End Date</div>
+
+        <ion-item  color = "sucess" class="date-item" lines="none" button (click)="openCalendar('end')">
+
+          <ion-label class="date-value">
+            {{ endDate ? (endDate | date:'dd/MM/yyyy') : 'DD/MM/YYYY' }}
+          </ion-label>
+
+          <ion-icon name="calendar-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row *ngIf="employeeRole === 'Admin'" class="employee-row">
+      <ion-col size="12">
+
+        <div class="employee-inline">
+          <span class="employee-label">Employee ID :</span>
+
+          <input type="number" inputmode="numeric" class="employee-input" [(ngModel)]="filterEmployeeId"
+            (input)="applyFilterButton()" placeholder="Enter Employee_Id" />
+        </div>
+      </ion-col>
+    </ion-row>
+    <div class="filter-container">
+      <button class="filter-btn" (click)=" applyFilterButton()">
+        Filter
+      </button>
+      <button class="clear-btn" [disabled]="!startDate && !endDate && !filterEmployeeId" (click)="clearFilters()">
+        Clear
+      </button>
+    </div>
+  </ion-card>
+
+  <!-- ================= STATUS TITLE ================= -->
+  <div class="div-st">
+    <h3>Status</h3>
+  </div>
+
+  <ion-card class="timesheet-card" *ngFor="let row of viewReports" [ngClass]="{
+    'pending-card': row.Timesheet_Status === 'Pending',
+    'approved-card': row.Timesheet_Status === 'Approved',
+    'rejected-card': row.Timesheet_Status === 'Rejected'
+  }">
+
+    <ion-grid>
+      <ion-row>
+
+        <!-- LEFT CONTENT -->
+        <ion-col size="8" class="left-content">
+
+          <p class="title info-row">
+            <img src="assets/icon/user.png" class="info-icon" />
+            <b>{{ row.Employee_Name }}</b> ({{ row.Employee_Id }})
+          </p>
+
+          <p class="info-row">
+            <img src="assets/icon/briefcase.png" class="info-icon" />
+            {{ row.Project_Name }} ({{ row.Project_Id }})
+          </p>
+
+          <p class="info-row">
+            <img src="assets/icon/calendar1.png" class="info-icon" />
+            <b>Start:</b> {{ formatCardDate(row.Start_Date) }}
+          </p>
+
+          <p class="info-row">
+            <img src="assets/icon/calendar1.png" class="info-icon" />
+            <b>End:</b> {{ formatCardDate(row.End_Date) }}
+          </p>
+
+          <p class="info-row">
+            <img src="assets/icon/analytics.png" class="info-icon" />
+            <b>Worked:</b> {{ row.Total_Worked_Hours }} hrs
+          </p>
+
+          <p class="info-row">
+            <img src="assets/icon/airplane.png" class="info-icon" />
+            <b>Leave:</b> {{ row.Total_Leave_Hours }} hrs
+          </p>
+
+
+        </ion-col>
+
+        <!-- RIGHT CONTENT -->
+        <ion-col size="4" class="right-section">
+
+          <!-- STATUS BADGE -->
+          <span class="status-badge" [ngClass]="{
+            'pending': row.Timesheet_Status === 'Pending',
+            'approved': row.Timesheet_Status === 'Approved',
+            'rejected': row.Timesheet_Status === 'Rejected'
+          }">
+            {{ row.Timesheet_Status }}
+          </span>
+
+          <!-- USER EDIT -->
+          <ion-button *ngIf="employeeRole === 'User'
+            && (row.Timesheet_Status === 'Pending'
+            || row.Timesheet_Status === 'Rejected')" size="small" fill="outline" (click)="editTimesheet(row)">
+            Edit
+          </ion-button>
+
+          <!-- ADMIN ACTIONS -->
+          <div *ngIf="employeeRole === 'Admin'">
+
+            <!-- APPROVE (Pending + Rejected) -->
+            <ion-button *ngIf="row.Timesheet_Status === 'Pending'
+                || row.Timesheet_Status === 'Rejected'" size="small" color="success" (click)="approveTimesheet(row)">
+              ✔
+            </ion-button>
+
+            <!-- REJECT (Pending + Approved) -->
+            <ion-button *ngIf="row.Timesheet_Status === 'Pending'
+                || row.Timesheet_Status === 'Approved'" size="small" color="danger" (click)="rejectTimesheet(row)">
+              ✖
+            </ion-button>
+            
+          </div>
+
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer class="page-footer-fix"></ion-footer>

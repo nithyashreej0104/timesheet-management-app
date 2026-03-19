@@ -1,0 +1,136 @@
+:host {
+  --header-bg: #23D5D1;
+  --background: #E9F7F7;
+  --item-bg: #ffffff;
+  --item-border: #B0E0E6;
+  --button-bg: #1FC7C3;
+  --button-text: #ffffff;
+  --text-color: #056162;
+  --radius: 18px;
+  --focus-ring: #1FC7C366;
+}
+
+
+/* POPUP CONTAINER */
+.popup-container {
+  // width: 250px !important;
+  overflow: hidden;
+  // max-height: 420px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  background:  #E9F7F7;
+}
+
+/* TOP HEADER (Selected Date) */
+.top-header {
+  background: #186567;
+  color:var(--button-text);
+  padding: 18px;
+  font-size: 19px;
+  text-align: center;
+  font-weight: 800;
+  border-radius: 0px 0px 20px 20px;
+}
+
+/* MONTH SELECTOR */
+.month-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #056162;
+
+  ion-icon {
+    font-size: 22px;
+    color:#1FC7C3;
+    cursor: pointer;
+  }
+}
+
+/* WEEKDAY LETTERS */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+    padding: 7px 8px 0px 4px;
+  color:#31aeac;;
+  font-size: 14px;
+  
+}
+
+/* DAYS GRID (7×6 grid) */
+.days {
+  width: 100%;
+  aspect-ratio: 1 / 0.85;   /* keeps calendar fixed ratio */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+   grid-template-rows: repeat(6, 38px);
+  padding: 8px;
+  box-sizing: border-box;
+  row-gap: 6px;
+   height: 260px;
+
+}
+
+/* DAY CELL */
+.day { width: 32px;
+  height: 32px;
+  margin: auto;
+  display: flex;
+  color:#056162 ;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  &.empty {
+    visibility: hidden;
+  }
+
+  &:hover {
+    background: #E6F8F8;
+  }
+
+  &.today {
+    border: 2px solid #23D5D1;
+    font-weight: 700;
+    color: #23D5D1;
+  }
+
+  &.selected {
+    background: #23D5D1;
+    color: white;
+    font-weight: 700;
+  }
+
+  
+    &.disabled {
+      color:var(--button-text);       /* grey text */
+      pointer-events: none; /* prevent hover/click */
+      background: #f9f9f9; /* optional light background */
+      cursor: default;
+    }
+
+    &:hover:not(.empty):not(.disabled) {
+      background: #d1f5f4;
+    }
+}
+
+/* FOOTER BUTTON */
+.footer {
+  text-align: center;
+  padding: 5px;
+
+  button {
+    background:var(--focus-ring);
+    // border:1px solid;
+    border-radius: 10px;
+    color: #056162;
+    font-size: 16px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    padding: 5px 15px;
+    
+  }
+}
+
+
+

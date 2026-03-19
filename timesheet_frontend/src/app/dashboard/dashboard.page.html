@@ -1,0 +1,102 @@
+<ion-content class="custom-content ion-padding">
+
+  <!-- ================= USER DASHBOARD ================= -->
+  <ng-container *ngIf="employeeRole === 'User'">
+
+    <!-- SUMMARY CARDS -->
+    <div class="user-summary-grid">
+
+      <div class="user-card hours">
+        <ion-icon name="time-outline"></ion-icon>
+        <p>Total Worked Hours</p>
+        <h2>{{ userSummary.total_worked_hrs }}</h2>
+      </div>
+
+      <div class="user-card days">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <p>Total Worked Days</p>
+        <h2>{{ userSummary.total_worked_days }}</h2>
+      </div>
+
+      <div class="user-card pending">
+        <ion-icon name="hourglass-outline"></ion-icon>
+        <p>Pending Timesheets</p>
+        <h2>{{ userSummary.pending_timesheets }}</h2>
+      </div>
+
+      <div class="user-card leave">
+        <ion-icon name="walk-outline"></ion-icon>
+        <p>Total Leave Days</p>
+        <h2>{{ userSummary.total_leave_days }}</h2>
+      </div>
+
+    </div>
+
+
+    <!-- STATUS CHART -->
+    <!-- <div class="chart-wrapper">
+      <div class="chart-title">Timesheet Status</div>
+    <div class="chart-canvas-box">
+  <canvas #userStatusChart></canvas>
+</div> -->
+    <div class="chart-wrapper">
+      <div class="chart-title">Timesheet Status</div>
+      <div class="chart-divider"></div>
+
+      <div class="chart-canvas-box">
+        <canvas #userStatusChart></canvas>
+      </div>
+    </div>
+
+  </ng-container>
+
+
+  <!-- ================= ADMIN DASHBOARD ================= -->
+  <ng-container *ngIf="employeeRole === 'Admin'">
+
+    <div class="admin-summary-grid">
+
+      <div class="admin-card approved">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <p>Approved</p>
+        <h2>{{ adminSummary.total_approved }}</h2>
+      </div>
+
+      <div class="admin-card pending">
+  <ion-icon name="hourglass-outline"></ion-icon>
+        <p>Pending</p>
+        <h2>{{ adminSummary.total_pending }}</h2>
+      </div>
+
+      <div class="admin-card rejected">
+        <ion-icon name="close-circle-outline"></ion-icon>
+        <p>Rejected</p>
+        <h2>{{ adminSummary.total_rejected }}</h2>
+      </div>
+
+    </div>
+
+
+    <!-- ADMIN STATUS CHART -->
+    <!-- <div class="chart-title">Approval Overview</div>
+<div class="chart-divider"></div>
+
+<div class="chart-canvas-box">
+  <canvas #adminStatusChart></canvas>
+</div> -->
+
+    <div class="chart-wrapper">
+      <div class="chart-title">Approval Overview</div>
+      <div class="chart-divider"></div>
+
+      <div class="chart-canvas-box">
+        <canvas #adminStatusChart></canvas>
+      </div>
+</div>
+
+
+  </ng-container>
+
+</ion-content>
+
+<ion-footer class="page-footer-fix"></ion-footer>

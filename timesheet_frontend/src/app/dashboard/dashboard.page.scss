@@ -1,0 +1,207 @@
+.custom-content{
+--background: #E9F7F7;
+}
+// ----------------------user card ----------------------------
+
+/* USER SUMMARY GRID */
+.user-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+}
+
+/* USER CARD */
+.user-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 10px;
+  text-align: center;
+    border: 1px solid var(--item-border);
+  box-shadow: 0 6px 10px #9dcfd6;
+}
+
+/* ICON */
+.user-card ion-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* TITLE */
+.user-card p {
+  font-size: 15px;
+  color: #555;
+  margin: 8px 0;
+  font-weight: 700;
+
+}
+
+/* VALUE */
+.user-card h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+  padding-top: 10px;
+}
+
+/* COLORS */
+.user-card.hours ion-icon,
+.user-card.hours h2 {
+  color: #3498db;
+}
+
+.user-card.days ion-icon,
+.user-card.days h2 {
+  color: #9b59b6;
+}
+
+.user-card.pending ion-icon,
+.user-card.pending h2 {
+  color: #f1c40f;
+}
+
+.user-card.leave ion-icon,
+.user-card.leave h2 {
+  color: #2ecc71;
+}
+
+// ----------------------admin card ----------------------------
+
+
+:root {
+  --card-bg: #ffffff;
+  --card-border: #dceeee;
+  --shadow-card: 0 6px 14px rgba(0, 0, 0, 0.12);
+  --radius-lg: 14px;
+
+  --success: #2ecc71;
+  --warning: #f1c40f;
+  --danger: #e74c3c;
+}
+
+.admin-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 25px;
+}
+
+/* ADMIN CARD */
+.admin-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px 10px;
+  text-align: center;
+    border: 2px solid var(--item-border);
+  box-shadow: 0 6px 10px #9dcfd6;
+}
+
+/* ICON */
+.admin-card ion-icon {
+  font-size: 40px;
+  margin-bottom: 6px;
+}
+
+/* TITLE */
+.admin-card p {
+  font-size:16px;
+  margin: 15px 0;
+  color: #555;
+  font-weight: 600;
+}
+
+/* VALUE */
+.admin-card h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin:25px;
+}
+
+/* STATUS COLORS */
+.admin-card.approved ion-icon,
+.admin-card.approved h2 {
+  color: #1bb95d;
+  
+}
+
+.admin-card.pending ion-icon,
+.admin-card.pending h2 {
+  color: #f1c40f;
+}
+
+.admin-card.rejected ion-icon,
+.admin-card.rejected h2 {
+  color: #e74c3c;
+}
+
+
+// ------------------------ statices chart----------------
+.chart-title{
+  color: red;
+}
+.chart-wrapper {
+  position: relative;
+  // background: #ffffff;
+  border-radius: 18px;
+  padding: 20px;
+  margin-top: 24px;
+  // box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+
+  /* 🔥 KEY PART */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* SQUARE CHART CONTAINER */
+.chart-canvas-box {
+  width: 240px;
+  height: 240px;
+  position: relative;
+}
+
+.chart-canvas-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.chart-divider {
+  width: 60px;
+  height: 3px;
+  background: #2ecc71;
+  margin: 6px auto 18px;
+  border-radius: 6px;
+}
+
+.chart-wrapper {
+  position: relative;
+    height: 340px; 
+}
+
+.chart-center {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.chart-center h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.chart-center p {
+  font-size: 13px;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+.chart-wrapper canvas {
+  width: 100% !important;
+  height: 220px !important;  /* keeps donut centered */
+  display: block;
+  margin: 0 auto;
+}

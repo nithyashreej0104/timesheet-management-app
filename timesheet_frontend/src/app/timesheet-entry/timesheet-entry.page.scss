@@ -1,0 +1,332 @@
+// ========================= */
+:host {
+  --header-bg: #23D5D1;
+  --page-bg: #E9F7F7;
+
+  /* 🔥 ONE CARD COLOR FOR ALL CARDS */
+  --card-bg: #ffffff;
+
+  --item-border: #B0E0E6;
+  --button-bg: #1FC7C3;
+  --button-text: #ffffff;
+  --text-color: #056162;
+  --radius: 18px;
+  --focus-ring: #1FC7C366;
+}
+
+/* =========================
+   PAGE BACKGROUND
+========================= */
+.custom-contentcard {
+  --background: var(--page-bg);
+  --padding-start: 12px;
+  --padding-end: 12px;
+}
+
+
+/* =========================
+   COMMON
+========================= */
+.icons {
+  width: 1.3rem;
+}
+
+.selected-date {
+  font-weight: 600;
+  color: var(--button-bg);
+}
+
+/* =========================
+   CARDS (PROJECT + WEEKLY SAME COLOR)
+========================= */
+ion-card,
+.weekly_card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 2px solid var(--item-border);
+  box-shadow: 0px 6px 12px #8ac5cd;
+}
+
+/* =========================
+   CARD HEADERS
+========================= */
+ion-card-title {
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+ion-card-subtitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+}
+
+ion-card-subtitle ion-button {
+  --border-radius: 12px;
+  height: 28px;
+  font-size: 12px;
+}
+
+/* =========================
+   FORM ITEMS
+========================= */
+ion-item {
+  margin-top: 10px;
+  border-radius: var(--radius);
+  --background: var(--card-bg);
+  border: 1px solid var(--item-border);
+}
+
+ion-item ion-label {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+ion-select,
+ion-input {
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --border-radius: var(--radius);
+}
+
+/* =========================
+   PROJECT INFO SUB CARD
+========================= */
+.pro-card {
+  background: #E3F4F3;
+  border: 1px solid var(--button-bg);
+  border-radius: var(--radius);
+  padding: 10px;
+  margin-top: 10px;
+  color: var(--text-color);
+}
+
+.pro-card h2 {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.pro-card h3 {
+  font-size: 1.05rem;
+  margin: 6px 0;
+}
+
+/* =========================
+   WEEKLY TABLE
+========================= */
+.weekly_header {
+  text-align: center;
+  font-weight: 700;
+}
+
+.weekly_subheader {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
+
+.weekly_cont_header {
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 2px solid #e5e5e5;
+  color: var(--button-bg);
+}
+
+/* =========================
+   ROWS
+========================= */
+.weekly_row {
+  padding: 10px 0;
+  border-bottom: 1px solid #dce7e7;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Column widths */
+.weekly_cont_header ion-col:nth-child(1),
+.weekly_row ion-col:nth-child(1) {
+  flex: 0 0 35%;
+  max-width: 35%;
+}
+
+.weekly_cont_header ion-col:nth-child(2),
+.weekly_row ion-col:nth-child(2),
+.weekly_cont_header ion-col:nth-child(3),
+.weekly_row ion-col:nth-child(3) {
+  flex: 0 0 32.5%;
+  max-width: 32.5%;
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.timesheet-input {
+  width: 65px;
+  height: 38px;
+  background: #ffffff;
+  border: 1.5px solid var(--button-bg);
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.timesheet-input::part(native) {
+  text-align: center;
+}
+
+/* =========================
+   WEEKEND & HOLIDAY
+========================= */
+.weekend-row {
+  background: #F3F6F6;
+}
+
+.weekend-row ion-col {
+  color: #9aa0a6;
+}
+
+.weekend-row ion-input {
+  background: #F0F0F0;
+  border: 1px dashed #CFD8DC;
+}
+
+.holiday-input {
+  border: 2px solid #fbb0b0;
+  color: #ff0000;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* =========================
+   TOTAL ROW
+========================= */
+.total-row {
+  background: var(--text-color);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 8px 0;
+  text-align: center;
+}
+
+/* =========================
+   FOOTER BUTTON
+========================= */
+ion-footer ion-button {
+  --background: var(--button-bg);
+  --color: var(--button-text);
+  --border-radius: 16px;
+  height: 48px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+// ion-footer ion-button {
+//   margin: 8px;
+//   border-radius: 16px;
+//   height: 48px;
+// }
+
+
+/* =========================
+   FIX FOOTER LINE ISSUE
+========================= */
+
+/* Remove footer top border / shadow */
+ion-footer {
+  --border-width: 0;
+  box-shadow: none;
+}
+
+/* Reset toolbar completely */
+ion-footer ion-toolbar {
+  --background: transparent;
+  --border-width: 0;
+  --min-height: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Make button fill toolbar without gaps */
+ion-footer ion-button {
+  margin: 0 !important;
+  border-radius: 0; /* full edge-to-edge */
+  height: 56px;     /* recommended touch height */
+}
+
+/* =========================
+   SUBMITTED STATE (DARK)
+========================= */
+
+ion-footer.submitted ion-toolbar {
+  --background: #1f2933; /* dark background */
+}
+
+ion-footer.submitted ion-button {
+  --background: #374151; /* dark grey */
+  --color: #e5e7eb;
+  opacity: 1;
+}
+
+/* Optional: change text */
+ion-footer.submitted ion-button::part(native) {
+  font-weight: 700;
+}
+
+/* =========================
+   SUBMITTED STATE (DARK)
+========================= */
+
+ion-footer.submitted ion-toolbar {
+  --background: #331f1f;
+}
+
+ion-footer.submitted ion-button {
+  --background: #374151;
+  --color: #e5e7eb;
+  
+}
+
+/* =========================
+   FOCUS
+========================= */
+ion-item:focus-within {
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+
+/* =========================
+   ION-SELECT FIELD STYLING
+========================= */
+ion-select {
+  // min-width: 140px;
+  text-align: right;
+  color: var(--button-bg);
+  font-weight: 600;
+}
+
+/* Selected value padding */
+ion-select::part(text) {
+  padding-right: 8px;
+  padding-left: 8px;
+  color: var(--button-bg);
+  font-weight: 600;
+}
+
+/* Placeholder style */
+ion-select::part(placeholder) {
+  color: #9aa0a6;
+  font-weight: 500;
+}
+
+/* Dropdown icon */
+ion-select::part(icon) {
+  color: var(--button-bg);
+  opacity: 1;
+}

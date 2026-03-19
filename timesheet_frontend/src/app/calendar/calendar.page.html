@@ -1,0 +1,126 @@
+<ion-content class="cal_content">
+  
+  <!-- ================= CALENDAR CARD ================= -->
+  <ion-card class = "popup-container">
+
+      <!-- Today Header -->
+      <div class="top-header">
+        {{ selectedDate | date:'EEEE , d MMMM' }}
+      </div>
+
+      <!-- Month Selector -->
+      <div class="month-selector">
+        <ion-icon name="chevron-back-outline" (click)="prevMonth()"></ion-icon>
+
+        <span class="month-label" (click)="toggleMonthYearPopup()">
+          {{ monthName }} {{ year }}
+        </span>
+
+        <ion-icon name="chevron-forward-outline" (click)="nextMonth()"></ion-icon>
+      </div>
+
+      <!-- Month / Year Popup -->
+      <div class="month-year-popup" *ngIf="showMonthYearPopup">
+        <div class="months">
+          <button *ngFor="let m of months; let i = index" [class.selected]="i === month" (click)="selectMonth(i)">
+            {{ m }}
+          </button>
+        </div>
+
+        <div class="years">
+          <button *ngFor="let y of years" [class.selected]="y === year" (click)="selectYear(y)">
+            {{ y }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Weekdays -->
+      <div class="weekdays">
+        <span *ngFor="let d of ['S','M','T','W','T','F','S']">{{ d }}</span>
+      </div>
+
+      <!-- Days -->
+      <div class="days">
+        <div *ngFor="let day of days; let i = index" class="day" [class.empty]="!day"
+          [class.today]="day && isToday(day)" [class.selected]="day && isSelected(day)" (click)="day && select(day)">
+          {{ day }}
+          <span class="event-dot" *ngIf="day && hasEvents(day)"></span>
+        </div>
+      </div>
+  </ion-card>
+
+  <!-- ================= VIEW ALL BUTTON ================= -->
+  <div class="button-container">
+    <ion-button fill="outline" shape="round" size="small" (click)="showAllEvents()">
+      <ion-icon slot="start" name="list-outline"></ion-icon>
+      View All Events
+    </ion-button>
+  </div>
+
+  <!-- ================= EVENTS SECTION ================= -->
+  <div class="events-section" *ngIf="!(events.length === 1 && events[0].id === -1)">
+
+    <h3 class="section-title" *ngIf="!viewAll">
+      Events on {{ selectedDate | date:'mediumDate' }}
+    </h3>
+
+    <h3 class="section-title" *ngIf="viewAll">
+      All Upcoming Events
+    </h3>
+
+    <div class="timeline">
+
+      <div class="timeline-item" *ngFor="let event of events; let i = index">
+
+        <div class="timeline-marker">
+          <div class="dot" [style.background-color]="eventColors[i % eventColors.length]" *ngIf="event.id !== -1">
+          </div>
+          <div class="line" *ngIf="i < events.length - 1"></div>
+        </div>
+
+        <div class="event-card">
+
+          <div class="event-content" (click)="viewEventDetails(event)">
+            <h4 class="event-title">{{ event.title }}</h4>
+
+            <p class="event-time">
+              <ion-icon name="time-outline"></ion-icon>
+              {{ event.time }}
+            </p>
+
+            <p class="event-date">
+              <ion-icon name="calendar-outline"></ion-icon>
+              {{ event.date | date:'mediumDate' }}
+            </p>
+          </div>
+
+          <!-- ADMIN ACTIONS -->
+            <div class="event-actions" *ngIf="employeeRole === 'Admin' && event.id !== -1">
+            <ion-button fill="clear" color="primary" (click)="editEvent(event)">
+              <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-button>
+
+            <ion-button fill="clear" color="danger" (click)="deleteEvent(event)">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= NO HOLIDAY MESSAGE ================= -->
+  <div class="no-events" *ngIf="events.length === 1 && events[0].id === -1">
+    <p>No holiday for {{ selectedDate | date:'mediumDate' }}.</p>
+  </div>
+
+  <!-- ================= ADD EVENT FAB ================= -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="employeeRole === 'Admin'">
+    <ion-fab-button color="secondary" (click)="presentAddEventAlert()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
+<ion-footer class="page-footer-fix"></ion-footer>

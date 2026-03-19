@@ -1,0 +1,154 @@
+
+<ion-content class="custom-contentcard ">
+
+  <!-- PROJECT DETAILS -->
+  <ion-card>
+    <ion-card-header class="project_pd">
+      <ion-card-title><b>Project Details</b></ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <!-- DATE -->
+      <ion-item>
+        <img src="assets/icon/calendar.png" slot="start" class="icons"
+          (click)="canEditDate() && openMonthPopover($event)">
+
+        <ion-label (click)="canEditDate() && openMonthPopover($event)">Date</ion-label>
+        <div slot="end" class="selected-date" (click)="canEditDate() && openMonthPopover($event)">
+          {{ selectedDate | date:'MMM dd, yyyy' }}
+        </div>
+      </ion-item>
+
+      <!-- PROJECT -->
+      <ion-item>
+        <img src="assets/icon/project.png" slot="start" class="icons">
+        <ion-label>Project</ion-label>
+
+        <ion-select class="project-select" slot="end" placeholder="Select Project" [(ngModel)]="selectedProjectId"
+          (ionChange)="onProjectChange()" [disabled]="isEditFromReport">
+
+
+          <ion-select-option *ngFor="let p of projects" [value]="p.id">
+            {{ p.name }}
+          </ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
+      <!-- PROJECT INFO -->
+      <ion-grid *ngIf="selectedProject" class="pro-card">
+        <ion-row>
+          <ion-col>
+            <h2><b>Project Info</b></h2>
+            <h3><b>Project ID:</b> {{ selectedProject.id }}</h3>
+            <h3><b>Project Name:</b> {{ selectedProject.name }}</h3>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- WEEKLY TIMESHEET -->
+  <ion-card class="weekly_card">
+
+    <ion-card-header class="weekly_header">
+      <ion-card-title>Worked & Leave Hours</ion-card-title>
+
+      <ion-card-subtitle class="weekly_subheader">
+        <h5>Quick Fill:</h5>
+        <ion-button size="small" color="secondary" (click)="quickFillWorked()">8 hr Worked</ion-button>
+        <ion-button size="small" color="danger" (click)="quickFillLeave()">8 hr Leave</ion-button>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+
+        <!-- TABLE HEADER -->
+        <ion-row class="weekly_cont_header">
+          <ion-col>Week</ion-col>
+          <ion-col>Worked Hrs</ion-col>
+          <ion-col>Leave Hrs</ion-col>
+        </ion-row>
+
+        <!-- 🔥 DYNAMIC WEEK -->
+        <ng-container *ngFor="let d of weekData">
+
+          <!-- MAIN ROW -->
+          <ion-row class="weekly_row" [ngClass]="{
+              'weekend-row': !d.isWorkingDay,
+              'invalid-row': d.error
+            }">
+
+            <!-- DAY -->
+            <ion-col>
+              {{ d.label }}, {{ d.month }} {{ d.day }}
+            </ion-col>
+
+            <!-- WORKED -->
+            <ion-col>
+              <ion-input type="number" [(ngModel)]="d.worked" (ionInput)="limitWorked(d, $event)"
+                [readonly]="!d.isWorkingDay || d.isHoliday || !canEditHours()"
+                [placeholder]="d.isHoliday ? 'Holiday' : (!d.isWorkingDay ? 'Weekend' : '0')" class="timesheet-input"
+                [ngClass]="{ 'holiday-input': d.isHoliday }">
+              </ion-input>
+            </ion-col>
+
+            <!-- LEAVE -->
+            <ion-col>
+              <ion-input type="number" [(ngModel)]="d.leave" (ionInput)="limitLeave(d, $event)"
+                [readonly]="!d.isWorkingDay || d.isHoliday || !canEditHours()"
+                [placeholder]="d.isHoliday ? 'Holiday' : (!d.isWorkingDay ? 'Weekend' : '0')" class="timesheet-input"
+                [ngClass]="{ 'holiday-input': d.isHoliday }">
+              </ion-input>
+            </ion-col>
+
+          </ion-row>
+
+          <!-- ERROR ROW -->
+          <ion-row *ngIf="d.error">
+            <ion-col size="4"></ion-col>
+            <ion-col size="8" class="error-text">
+              {{ d.error }}
+            </ion-col>
+          </ion-row>
+
+        </ng-container>
+
+        <!-- TOTAL -->
+        <ion-row class="total-row">
+          <ion-col>Total</ion-col>
+          <ion-col>{{ totalWorked }}</ion-col>
+          <ion-col>{{ totalLeave }}</ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+
+<!-- FOOTER -->
+<!-- <ion-footer>
+ 
+    <ion-button expand="full" [disabled]="timesheetStatus === 'Approval'" (click)="submitTimesheet()">
+      SUBMIT FOR APPROVAL
+    </ion-button>
+
+</ion-footer> -->
+
+<ion-footer [class.submitted]="isSubmittedView">
+  <ion-toolbar>
+    <ion-button
+      expand="full"
+      [disabled]="isSubmittedView"
+      (click)="submitTimesheet()"
+    >
+      {{ isSubmittedView ? 'SUBMITTED' : 'SUBMIT FOR APPROVAL' }}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

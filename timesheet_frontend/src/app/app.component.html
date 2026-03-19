@@ -1,0 +1,32 @@
+<ion-app>
+
+  <!-- LEFT MENU -->
+  <ion-menu menuId="leftMenu" side="start" contentId="main"swipeGesture="false">
+    <ion-content>
+      <app-left-sidebar></app-left-sidebar>
+    </ion-content>
+  </ion-menu>
+
+  <!-- RIGHT MENU -->
+  <ion-menu menuId="rightMenu" side="end" contentId="main"swipeGesture="false">
+    <ion-content>
+      <app-right-sidebar></app-right-sidebar>
+    </ion-content>
+  </ion-menu>
+
+  <!-- MAIN CONTENT -->
+  <ion-content id="main"  fullscreen>
+
+    <!-- GLOBAL HEADER -->
+    <!-- <app-header></app-header> -->
+
+       <ion-header slot="fixed">
+      <app-header></app-header>
+    </ion-header>
+
+    <!-- PAGE CONTENT -->
+    <ion-router-outlet></ion-router-outlet>
+
+  </ion-content>
+
+</ion-app>

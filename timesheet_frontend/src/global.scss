@@ -1,0 +1,206 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
+
+
+
+.calendar-popover {
+  --width: 300px !important;
+  --max-width: 300px !important;
+  --min-width: 300px !important;
+
+  --max-height: 450px !important;
+  --border-radius: 20px;
+}
+
+
+
+/* =====================================================
+   GLOBAL PROJECT SELECT – POPUP (ALERT)
+   Applies to Timesheet Entry + Dashboard
+===================================================== */
+
+/* Alert background */
+ion-alert {
+  --background: #122c30;
+  --backdrop-opacity: 0.6;
+  //  --color: #ffffff; 
+}
+
+/* Alert container */
+ion-alert .alert-wrapper {
+  background: #122c30 !important;
+  border-radius: 18px !important;
+  border: 2px solid #1fc7c3 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Alert title */
+ion-alert .alert-title {
+  color: #d6f4f2 !important;
+  font-weight: 700 !important;
+  text-align: center;
+}
+
+/* 🌟 Holiday Alert Input Styling */
+.holiday-alert .alert-input {
+  color: #ffea00 !important;
+  border-bottom: 1px solid #ffea00 !important;
+}
+
+/* Project names */
+ion-alert .alert-radio-label {
+  color: #d6f4f2 !important;
+  font-weight: 600 !important;
+}
+
+/* Radio circle */
+ion-alert .alert-radio-icon {
+  border-color: #1fc7c3 !important;
+}
+
+ion-alert .alert-radio-inner {
+  background-color: #1fc7c3 !important;
+}
+
+/* Buttons */
+ion-alert .alert-button {
+  color: #1fc7c3 !important;
+  font-weight: 700 !important;
+}
+
+ion-alert .alert-button-role-cancel {
+  color: #9aa0a6 !important;
+}
+
+/* =====================================================
+   PROJECT SELECT FIELD (INSIDE PAGE)
+   Applies to BOTH pages
+===================================================== */
+
+ion-item ion-select {
+  // min-width: 140px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  // border: 1px solid var(--item-border, #B0E0E6);
+}
+
+/* Selected value text */
+ion-select::part(text) {
+  padding: 0 8px;
+  font-weight: 600;
+  color: var(--button-bg, #1fc7c3);
+}
+
+/* Placeholder */
+ion-select::part(placeholder) {
+  color: #9aa0a6;
+  font-weight: 500;
+}
+
+/* Dropdown icon */
+ion-select::part(icon) {
+  color: var(--button-bg, #1fc7c3);
+  opacity: 1;
+}
+
+
+
+/* =========================
+   SAFE AREA FIX (ANDROID / IOS)
+========================= */
+
+/* Reserve space for system navigation bar */
+#main {
+  --padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Scroll content padding */
+#main::part(scroll) {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 56px);
+}
+
+/* Sidebar should NOT get this padding */
+ion-menu ion-content {
+  --padding-bottom: 0;
+}
+
+/* =========================
+   SAFE AREA FIX (ALL PHONES)
+========================= */
+
+
+ion-footer {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+ion-content {
+  --padding-bottom: env(safe-area-inset-bottom);
+}
+
+ion-content::part(scroll) {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 12px);
+}
+
+/* Invisible footer to reserve space */
+.page-footer-fix {
+  height: env(safe-area-inset-bottom);
+  background: transparent;
+}
+
+/* ===============================
+   GLOBAL HEADER OFFSET FOR PAGES
+   =============================== */
+
+ion-content::part(scroll) {
+  padding-top:60px  !important; /* 56px header + 16px spacing */
+  //  background: red;
+}
+
+/* Sidebar must start from TOP (no header offset) */
+ion-menu ion-header {
+  padding-top: 0 !important;
+}
+
+ion-menu ion-content {
+  --padding-top: 0 !important;
+}
+
+ion-menu ion-content::part(scroll) {
+  padding-top: 0 !important;
+}
+

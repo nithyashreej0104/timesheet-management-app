@@ -1,0 +1,171 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar class="custom-header">
+    <!-- <img src="assets/Logo.png" alt="Logo" class="logo"> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding custom-contentreg">
+  <form #form="ngForm">
+
+    <ion-card>
+
+      <!-- ================= SIGN UP ================= -->
+      <ng-container *ngIf="submissionType === 'signup'">
+
+        <ion-item>
+          <ion-label position="floating">Employee ID</ion-label>
+          <ion-input [(ngModel)]="Employee_Id" name="signupEmployeeId"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Employee Name</ion-label>
+          <ion-input [(ngModel)]="Employee_Name" name="signupEmployeeName"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="Email" name="signupEmail" type="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Mobile Number</ion-label>
+          <ion-input [(ngModel)]="Contact_No" name="signupContact"></ion-input>
+        </ion-item>
+
+        <!-- Password -->
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input
+            [(ngModel)]="Password"
+            name="signupPassword"
+            [type]="passwordVisibility['signup'] ? 'text' : 'password'">
+          </ion-input>
+          <ion-icon
+            slot="end"
+            [name]="passwordVisibility['signup'] ? 'eye-off-outline' : 'eye-outline'"
+            (click)="toggleVisibility('signup')">
+          </ion-icon>
+        </ion-item>
+
+        <!-- Confirm Password -->
+        <ion-item>
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input
+            [(ngModel)]="confirmPassword"
+            name="signupConfirmPassword"
+            [type]="passwordVisibility['signupConfirm'] ? 'text' : 'password'">
+          </ion-input>
+          <ion-icon
+            slot="end"
+            [name]="passwordVisibility['signupConfirm'] ? 'eye-off-outline' : 'eye-outline'"
+            (click)="toggleVisibility('signupConfirm')">
+          </ion-icon>
+        </ion-item>
+
+        <ion-button expand="block" shape="round" (click)="signup()">Sign Up</ion-button>
+      </ng-container>
+
+      <!-- ================= LOGIN ================= -->
+      <ng-container *ngIf="submissionType === 'login'">
+
+        <ion-item>
+          <ion-label position="floating">Employee ID</ion-label>
+          <ion-input [(ngModel)]="Employee_Id" name="loginEmployeeId"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input
+            [(ngModel)]="Password"
+            name="loginPassword"
+            [type]="passwordVisibility['login'] ? 'text' : 'password'">
+          </ion-input>
+          <ion-icon
+            slot="end"
+            [name]="passwordVisibility['login'] ? 'eye-off-outline' : 'eye-outline'"
+            (click)="toggleVisibility('login')">
+          </ion-icon>
+        </ion-item>
+
+        <ion-button expand="block" shape="round" (click)="login()">Sign In</ion-button>
+      </ng-container>
+
+      <!-- ================= FORGOT ================= -->
+      <ng-container *ngIf="submissionType === 'forgot'">
+
+        <ion-item>
+          <ion-label position="floating">Enter Your Email</ion-label>
+          <ion-input [(ngModel)]="forgotEmail" name="forgotEmail" type="email"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" shape="round" (click)="sendOtp()">Send OTP</ion-button>
+      </ng-container>
+
+      <!-- ================= OTP ================= -->
+      <ng-container *ngIf="submissionType === 'otp' && !otpVerified">
+
+        <ion-item>
+          <ion-label position="floating">Enter OTP</ion-label>
+          <ion-input [(ngModel)]="otp" name="otp"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" shape="round" (click)="verifyOtpOnly()">Verify OTP</ion-button>
+      </ng-container>
+
+      <!-- ================= RESET ================= -->
+      <ng-container *ngIf="otpVerified">
+
+        <ion-item>
+          <ion-label position="floating">New Password</ion-label>
+          <ion-input
+            [(ngModel)]="newPassword"
+            name="resetPassword"
+            [type]="passwordVisibility['reset'] ? 'text' : 'password'">
+          </ion-input>
+          <ion-icon
+            slot="end"
+            [name]="passwordVisibility['reset'] ? 'eye-off-outline' : 'eye-outline'"
+            (click)="toggleVisibility('reset')">
+          </ion-icon>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input
+            [(ngModel)]="confirmPassword"
+            name="resetConfirmPassword"
+            [type]="passwordVisibility['resetConfirm'] ? 'text' : 'password'">
+          </ion-input>
+          <ion-icon
+            slot="end"
+            [name]="passwordVisibility['resetConfirm'] ? 'eye-off-outline' : 'eye-outline'"
+            (click)="toggleVisibility('resetConfirm')">
+          </ion-icon>
+        </ion-item>
+
+        <ion-button expand="block" shape="round" (click)="verifyOtpAndResetPassword()">
+          Reset Password
+        </ion-button>
+      </ng-container>
+
+    </ion-card>
+  </form>
+
+  <!-- ===== OLD NAVIGATION TOGGLE LINKS (UNCHANGED) ===== -->
+  <div class="toggle-text">
+    <ng-container *ngIf="submissionType === 'login'">
+      <ion-text (click)="toggleSubmission('signup')">Don't have an account? Sign Up</ion-text><br>
+      <ion-text (click)="toggleSubmission('forgot')">Forgot Password? Reset</ion-text>
+    </ng-container>
+
+    <ng-container *ngIf="submissionType === 'signup'">
+      <ion-text (click)="toggleSubmission('login')">Already have an account? Sign In</ion-text>
+    </ng-container>
+
+    <ng-container *ngIf="submissionType === 'forgot'">
+      <ion-text (click)="toggleSubmission('login')">Already have an account? Sign In</ion-text>
+    </ng-container>
+  </div>
+
+</ion-content>

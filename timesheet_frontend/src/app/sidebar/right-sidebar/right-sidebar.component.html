@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar class="menu-header">
+    <ion-title>
+      <ion-icon name="person-outline"></ion-icon>
+      Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding menu-content">
+
+  <!-- User Info -->
+  <div class="profile-container" *ngIf="user">
+    <ion-avatar class="profile-avatar">
+      <ion-icon name="person-circle"></ion-icon>
+    </ion-avatar>
+
+    <h2>{{ user.Employee_Name }}</h2>
+    <p class="employee-id">Employee ID: {{ user.Employee_Id }}</p>
+  </div>
+
+  <!-- PROFILE DETAILS -->
+  <div class="profile-details" *ngIf="user">
+
+    <div class="detail-row stacked">
+      <div class="detail-left">
+        <ion-icon name="mail-outline"></ion-icon>
+        {{ user.Email }}
+      </div>
+    </div>
+
+    <div class="detail-row stacked">
+      <div class="detail-left">
+        <ion-icon name="call-outline"></ion-icon>
+        {{ user.Contact_No }}
+      </div>
+    </div>
+
+    <ion-menu-toggle auto-hide="true" menu="rightMenu">
+      <ion-item button detail="false" (click)="logout()" class="logout-item">
+        <ion-label>Logout</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+
+  </div>
+
+</ion-content>

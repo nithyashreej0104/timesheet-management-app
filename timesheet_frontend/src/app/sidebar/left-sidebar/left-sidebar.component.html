@@ -1,0 +1,50 @@
+  <ion-header>
+  <ion-toolbar class="menu-header">
+    <ion-title>
+      <ion-icon name="grid-outline"></ion-icon>
+      Navigation
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="menu-content">
+  <ion-list lines="none">
+
+    <ion-menu-toggle auto-hide="true">
+      <ion-item
+        routerLink="/dashboard"
+        [class.active-menu-item]="currentRoute === '/dashboard'">
+        <ion-icon slot="start" name="speedometer-outline"></ion-icon>
+        <ion-label>Dashboard</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+
+    <ion-menu-toggle auto-hide="true">
+      <ion-item
+        routerLink="/timesheet-entry"
+        [class.active-menu-item]="currentRoute === '/timesheet-entry'">
+        <ion-icon slot="start" name="create-outline"></ion-icon>
+        <ion-label>Timesheet Entry</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+
+    <ion-menu-toggle auto-hide="true">
+      <ion-item
+        routerLink="/timesheet-reports"
+        [class.active-menu-item]="currentRoute === '/timesheet-reports'">
+        <ion-icon slot="start" name="document-text-outline"></ion-icon>
+        <ion-label>Timesheet Reports</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+
+    <ion-menu-toggle auto-hide="true">
+      <ion-item
+        routerLink="/calendar"
+        [class.active-menu-item]="currentRoute === '/calendar'">
+        <ion-icon slot="start" name="calendar-outline"></ion-icon>
+        <ion-label>Calendar</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+
+  </ion-list>
+</ion-content>

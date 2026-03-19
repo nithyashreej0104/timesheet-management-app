@@ -1,0 +1,24 @@
+<ion-header *ngIf="showHeader">
+  <ion-toolbar class="custom-header">
+
+    <!-- LEFT MENU -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <!-- CENTER TITLE -->
+    <ion-title class="center-title">
+      {{ title }}
+    </ion-title>
+
+    <!-- RIGHT PROFILE -->
+    <ion-buttons slot="end" class="right-menu">
+      <ion-menu-button menu="rightMenu" class="profile-menu">
+        <ion-avatar class="profile-avatar" >
+          <img src="assets/icon/users.png" alt="User" />
+        </ion-avatar>
+      </ion-menu-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>

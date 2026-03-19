@@ -1,0 +1,390 @@
+:host {
+  --header-bg: #23D5D1;
+  --background: #E9F7F7;
+  --item-bg: #ffffff;
+  --item-border: #B0E0E6;
+  --button-bg: #1FC7C3;
+  --button-text: #ffffff;
+  --text-color: #056162;
+  --radius: 18px;
+  --focus-ring: #1FC7C366;
+}
+
+/* ================= CONTENT ================= */
+.custom-content {
+  --background: #E9F7F7;
+}
+
+/* ================= FILTER CARD ================= */
+.report-card {
+  border-radius: var(--radius);
+  background: var(--item-bg);
+  border: 2px solid var(--item-border);
+  box-shadow: 0 6px 10px #9dcfd6;
+  margin: 18px;
+}
+
+/* ================= STATUS BUTTONS ================= */
+.status-buttons button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  // font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.status-btn.all {
+  background: #1F8CFF;
+}
+
+.status-btn.approval {
+  background: #18C281;
+}
+
+.status-btn.rejected {
+  background: #FF4B4B;
+}
+
+.status-btn.pending {
+  background: #F9C439;
+  color: #000;
+}
+
+.status-btn {
+  opacity: 0.55;
+  transform: scale(0.95);
+  transition: all 0.2s ease;
+}
+
+/* ================= ACTIVE STATUS ================= */
+
+.status-btn.active {
+  opacity: 1;
+  transform: scale(1);
+  
+}
+
+/* Active colors */
+.status-btn.all.active {
+  background: #1F8CFF;
+  color: #000;
+  font-weight: bold;
+}
+
+.status-btn.approval.active {
+  background: #0d925f;
+  color: #000;
+  font-weight: bold;
+}
+
+.status-btn.rejected.active {
+  background: #ca0d0d;
+  color: #000;
+  font-weight: bold;
+}
+
+.status-btn.pending.active {
+  background: #F9C439;
+  color: #000;
+  font-weight: bold;
+  
+}
+
+/* ================= DATE ROW ================= */
+
+.date-row {
+  margin-top: 4px;
+}
+
+/* Column */
+.date-col {
+  padding: 5px 16px;
+}
+
+/* Label */
+.date-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #056162;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+/* Date item */
+.date-item {
+  --min-height: 40px;
+  --padding-start: 8px;
+  --padding-end: 0;
+  // border-bottom: 1px solid #cdeeee;
+ 
+}
+
+/* Date text */
+.date-value {
+  font-size: 15px;
+  color: #056162;
+  text-align: center;
+}
+
+/* Calendar icon */
+.date-item ion-icon {
+  font-size: 18px;
+  color: #056162;
+}
+
+
+/* ================= EMPLOYEE INLINE ================= */
+
+.employee-row {
+  margin-top: 5px;
+  padding-left: 20px;
+}
+
+.employee-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  // border-bottom: 2px solid #cdeeee;
+}
+
+.employee-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #056162;
+  white-space: nowrap;
+}
+
+.employee-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  color:red;
+}
+
+/* Focus underline highlight */
+.employee-inline:focus-within {
+  border-bottom-color: #23D5D1;
+}
+
+/* ================= FILTER & CLEAR ================= */
+
+.filter-container {
+  margin: 10px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* FILTER = PRIMARY ACTION */
+.filter-btn {
+  min-width: 80px;
+  height: 40px;
+  background: var(--button-bg); /* #23D5D1 */
+  color: #fff;
+  border-radius: 14px;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  filter: brightness(0.95);
+}
+
+.filter-btn:active {
+  transform: scale(0.96);
+  background: #056162; 
+   color:black;
+}
+
+/* CLEAR = SECONDARY ACTION */
+.clear-btn {
+  min-width: 80px;
+  height: 40px;
+  background: var(--button-bg); /* #23D5D1 */
+  color: #fff;
+  border-radius: 14px;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-btn:hover:not(:disabled) {
+  background: #f3f3f3;
+}
+
+/* DISABLED CLEAR */
+.clear-btn:disabled {
+  opacity: 0.95;
+  cursor: not-allowed;
+}
+
+/* ================= STATUS TITLE ================= */
+
+.div-st {
+  margin: 18px 25px 10px;
+  padding: 6px;
+  border-left: 5px solid #23D5D1;
+}
+
+.div-st h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #056162;
+}
+
+
+/* ================= CARD INFO WITH ICONS ================= */
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  font-size: 14px;
+  color: #056162;
+}
+
+.info-row b {
+  font-weight: 600;
+}
+
+.info-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* Slight emphasis for name row */
+.title.info-row {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+
+/* ================= TIMESHEET CARD ================= */
+.timesheet-card {
+  margin: 16px;
+  padding: 14px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  border-left: 6px solid transparent;
+}
+
+/* ================= CARD STATUS COLORS ================= */
+.pending-card {
+  border-left-color: #f9c439;
+  background: #fff9e6;
+}
+
+.approved-card {
+  border-left-color: #18c281;
+  background: #e9f9f2;
+}
+
+.rejected-card {
+  border-left-color: #ff4b4b;
+  background: #fdeaea;
+}
+
+/* ================= LEFT CONTENT ================= */
+.left-content p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #056162;
+}
+
+.left-content .title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ================= ICONS ================= */
+.icons {
+  width: 16px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ================= RIGHT SECTION ================= */
+.right-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================= STATUS BADGE ================= */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  
+}
+
+.status-badge.pending {
+  background: #ffe8b3;
+  color: #ff9800;
+}
+
+.status-badge.approved {
+  background: #c8f0df;
+  color: #057e52;
+}
+
+.status-badge.rejected {
+  background: #f8c6c6;
+  color: #e00c0c;
+}
+
+/* ================= ADMIN ACTION BUTTONS ================= */
+.admin-action-btns {
+  display: flex;
+  gap: 5px;
+}
+
+.admin-action-btns ion-button {
+  --border-radius: 80%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+/* ================= NO DATA ================= */
+.no-data {
+  text-align: center;
+  margin-top: 40px;
+  color: #888;
+  font-size: 14px;
+}
+
+/* ================= FOOTER SAFE ================= */
