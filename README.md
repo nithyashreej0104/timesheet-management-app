@@ -173,7 +173,13 @@ EMAIL_PASS=your_app_password
 * PUT `/api/project/admin/updateWeeklyStatus`
 
 ---
+## 🔐 Security
 
+- Environment variables used for sensitive data  
+- Passwords are hashed using bcrypt  
+- OTP-based password reset implemented
+
+---
 
 ## 🚀 Future Improvements
 
@@ -195,14 +201,16 @@ All company-specific data, branding, and sensitive information have been removed
 **Nithya Shree**
 
 ---
+## 🌐 Live Demo
+Coming soon...
+
+---
 
 ## 🔐 Security Note
 
 * Do NOT upload `.env`
 * Keep DB & email credentials safe
-
 ---
-
 
 ## 📄 License
 
